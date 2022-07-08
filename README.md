@@ -1,4 +1,12 @@
 # MyStore
+this is e-commerce app 
+you can display products through Products component and show more details about product through Product details component (child component).
+you can add products to your shopping cart with limited quantity of max 5 items.
+you can view your cart items and total amount.
+you can change the quantity of your items in your shopping cart.
+you can checkout through template driven form with validations such as (required - max length - min length).
+after checkout it will route user to success component and remove all items in shopping cart.
+this application uses 2 external liberaries (dependencies) such as (ng-bootstrap & angular-notifier).
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 12.1.1.
 
