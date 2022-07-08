@@ -16,8 +16,10 @@ export class ProductsComponent implements OnInit {
 
   constructor(
     private _ProductsService:ProductsService,
-    private _notifierService: NotifierService
-    ) { }
+    private _notifierService: NotifierService,
+    ) { 
+      this._ProductsService.showDetails.next(false)
+    }
 
   ngOnInit(): void {
     this._ProductsService.getAllProducts().subscribe((res:IProduct[])=>{
@@ -28,7 +30,10 @@ export class ProductsComponent implements OnInit {
 
   getDetails(product:IProduct){
     this.productDetails = product;
-    this.showDetails = true;
+    this._ProductsService.showDetails.next(true)
+    this._ProductsService.showDetails.subscribe((res:boolean) => {
+      this.showDetails = res;
+    });
   }
 
   getProducts(e:any){

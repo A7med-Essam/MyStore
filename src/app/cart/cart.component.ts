@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NotifierService } from 'angular-notifier';
 import { IProduct } from '../models/product';
 import { ProductsService } from '../products.service';
 
@@ -16,7 +17,8 @@ export class CartComponent implements OnInit {
   address!:string;
   constructor(
     private _ProductsService:ProductsService,
-    private _Router:Router
+    private _Router:Router,
+    private _notifierService: NotifierService,
     ) {
     this.products = []
   }
@@ -36,6 +38,7 @@ export class CartComponent implements OnInit {
   }
 
   onSubmit(){
+    this._notifierService.notify('success', 'Order confirmed successfully');
     this._Router.navigate(['../success'])
   }
 

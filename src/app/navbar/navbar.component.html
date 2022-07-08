@@ -1,7 +1,7 @@
 <div class="header">
     <h1>My Store</h1>
     <div class="d-flex justify-content-center">
-        <a routerLink="../Products" class="mx-2">Products</a> |
+        <a routerLink="../Products" class="mx-2" (click)="getProducts()">Products</a> |
         <a routerLink="../Cart" class="d-flex mx-2">
             <span>Cart</span> 
             <span class="text-danger cart-count mx-1"><b>{{CartCounter}}</b></span>

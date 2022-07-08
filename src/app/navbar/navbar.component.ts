@@ -15,6 +15,10 @@ export class NavbarComponent implements OnInit {
     this.getCartLegnth();
   }
 
+  getProducts(){
+    this._ProductsService.showDetails.next(false)
+  }
+
   getCartLegnth(){
     this._ProductsService.Cart.subscribe((res:IProduct[])=>{
       if (res) {

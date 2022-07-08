@@ -9,8 +9,10 @@ import { IProduct } from './models/product';
 export class ProductsService {
 
   Cart:BehaviorSubject<IProduct[]|any> = new BehaviorSubject(null);
-
-  constructor(private http:HttpClient) { }
+  showDetails:BehaviorSubject<boolean[]|any> = new BehaviorSubject(null);
+  
+  constructor(private http:HttpClient) { 
+  }
 
   getAllProducts():Observable<any>{
     return this.http.get('../assets/data.json')
