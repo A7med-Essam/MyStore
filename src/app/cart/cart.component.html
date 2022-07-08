@@ -1,0 +1,35 @@
+<div class="container my-5" *ngIf="products; else other_content">
+    <div class="row" *ngIf="products.length > 0; else other_content">
+        <div class="col-lg-3 col-md-6 my-4" *ngFor="let product of products">
+            <img [src]="product?.url" class="img-fluid" alt="">
+            <div class="d-flex justify-content-between align-items-center mt-3">
+                <div>
+                    <b>{{product?.name}}</b>
+                    <div>
+                        <b>{{product.price | currency}}</b>
+                    </div>
+                </div>
+                <div>
+                    <input #counter type="number" max="5" min="1"  onkeydown="return false" (change)="changeQty(product,counter)" [value]="product?.qty" class="form-control ml-auto">
+                </div>
+            </div>
+        </div>
+    </div>
+    <h1>Grand Total: <span>{{total.toFixed(2)}}</span></h1>
+    <div style="border: 2px solid rgb(100, 184, 227);padding: 30px;">
+        <h2>Checkout Form</h2>
+        <form (ngSubmit)="onSubmit()" #form="ngForm">
+            <input type="text" required  name="name" [(ngModel)]="name" class="form-control my-2" placeholder="FULL NAME">
+            <input type="text" required  name="address" [(ngModel)]="address" class="form-control my-2" placeholder="ADDRESS">
+            <input type="text" required  maxlength="14" minlength="14" name="creditCard" [(ngModel)]="creditCard" class="form-control my-2" placeholder="CREDIT CARD">
+            <button class="btn btn-block btn-primary my-2" type="submit" [disabled]="form.invalid">Check out</button>
+        </form>
+    </div>
+</div>
+<ng-template #other_content>
+    <div class="container my-5">
+        <div class="alert alert-warning text-center" role="alert">
+            <h1>Your cart is currently empty</h1>
+        </div>
+    </div>
+</ng-template>
