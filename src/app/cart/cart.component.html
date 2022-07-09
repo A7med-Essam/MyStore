@@ -20,9 +20,24 @@
     <div *ngIf="products.length > 0" style="border: 2px solid rgb(100, 184, 227);padding: 30px;">
         <h2>Checkout Form</h2>
         <form (ngSubmit)="onSubmit()" #form="ngForm">
-            <input type="text" required  minlength="3" name="name" [(ngModel)]="name" class="form-control my-2" placeholder="FULL NAME">
-            <input type="text" required  name="address" [(ngModel)]="address" class="form-control my-2" placeholder="ADDRESS">
-            <input type="text" required  maxlength="14" minlength="14" name="creditCard" [(ngModel)]="creditCard" class="form-control my-2" placeholder="CREDIT CARD">
+            <!-- Name -->
+            <div>
+                <input type="text" required  minlength="3" #name="ngModel" name="name" (ngModel)="name" (ngModelChange)="name"  class="form-control my-2" placeholder="FULL NAME">
+                <span class="text-danger" *ngIf="name.errors?.required && (name.touched || name.dirty)">This field is required*</span>
+                <span class="text-danger" *ngIf="name.errors?.minlength && (name.touched || name.dirty)">Min length 3 chars</span>
+            </div>
+            <!-- Address -->
+            <div>
+                <input type="text" required #address="ngModel" name="address" (ngModel)="address" (ngModelChange)="address" class="form-control my-2" placeholder="ADDRESS">
+                <span class="text-danger" *ngIf="address.errors?.required && (address.touched || address.dirty)">This field is required*</span>
+            </div>
+            <!-- Credit Card -->
+            <div>
+                <input type="text" oninput="this.value = this.value.replace(/[^0-9.]/g, '').replace(/(\..*?)\..*/g, '$1');" required  maxlength="14" minlength="14" name="creditCard" #creditCard="ngModel" (ngModel)="creditCard" (ngModelChange)="creditCard" class="form-control my-2" placeholder="CREDIT CARD">
+                <span class="text-danger" *ngIf="creditCard.errors?.required && (creditCard.touched || creditCard.dirty)">This field is required*</span>
+                <span class="text-danger" *ngIf="creditCard.errors?.minlength && (creditCard.touched || creditCard.dirty)">Min length 14 numbers</span>
+            </div>
+
             <button class="btn btn-block btn-primary my-2" type="submit" [disabled]="form.invalid">Check out</button>
         </form>
     </div>
