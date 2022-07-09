@@ -51,4 +51,12 @@ export class CartComponent implements OnInit {
     this.getTotalPrice();
   }
 
+  DeleteProduct(product:IProduct){
+    const index = this.products.indexOf(product);
+    if (index > -1) { 
+      this.products.splice(index, 1); 
+    }
+    this._ProductsService.Cart.next(this.products)
+    this._notifierService.notify('error', 'Product deleted!');
+  }
 }

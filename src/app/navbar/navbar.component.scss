@@ -1,6 +1,6 @@
 .header {
     text-align: center;
-    background: #33B5E5;
+    background: #33b5e5;
     color: #fff;
     padding: 12px;
 }
@@ -9,6 +9,7 @@ a {
     color: #ffffff;
 }
 
+// shopping cart badge style
 .cart-count{
     background-color: #fff;
     border-radius: 50%;
@@ -17,5 +18,4 @@ a {
     display: flex;
     justify-content: center;
     align-items: center;
-    // padding: 10px;
 }

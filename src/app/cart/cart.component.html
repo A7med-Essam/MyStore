@@ -13,13 +13,14 @@
                     <input #counter type="number" max="5" min="1"  onkeydown="return false" (change)="changeQty(product,counter)" [value]="product?.qty" class="form-control ml-auto">
                 </div>
             </div>
+            <button class="btn btn-danger btn-block mt-2" (click)="DeleteProduct(product)">Delete Product</button>
         </div>
     </div>
-    <h1>Grand Total: <span>{{total.toFixed(2)}}</span></h1>
-    <div style="border: 2px solid rgb(100, 184, 227);padding: 30px;">
+    <h1 *ngIf="products.length > 0">Grand Total: <span>{{total.toFixed(2)}}</span></h1>
+    <div *ngIf="products.length > 0" style="border: 2px solid rgb(100, 184, 227);padding: 30px;">
         <h2>Checkout Form</h2>
         <form (ngSubmit)="onSubmit()" #form="ngForm">
-            <input type="text" required  name="name" [(ngModel)]="name" class="form-control my-2" placeholder="FULL NAME">
+            <input type="text" required  minlength="3" name="name" [(ngModel)]="name" class="form-control my-2" placeholder="FULL NAME">
             <input type="text" required  name="address" [(ngModel)]="address" class="form-control my-2" placeholder="ADDRESS">
             <input type="text" required  maxlength="14" minlength="14" name="creditCard" [(ngModel)]="creditCard" class="form-control my-2" placeholder="CREDIT CARD">
             <button class="btn btn-block btn-primary my-2" type="submit" [disabled]="form.invalid">Check out</button>
