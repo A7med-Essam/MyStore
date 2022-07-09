@@ -9,6 +9,8 @@ you can view your cart items and total amount.
 
 you can change the quantity of your items in your shopping cart.
 
+you can delete your shopping cart products.
+
 you can checkout through template driven form with validations such as (required - max length - min length).
 
 after checkout it will route user to success component and remove all items in shopping cart.
